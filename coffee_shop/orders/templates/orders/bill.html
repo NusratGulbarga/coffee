@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generated Bill</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    
+    <style>
+        /* Set the background image */
+        body {
+            background-image: url('https://img.freepik.com/free-vector/restaurant-mural-wallpaper_52683-47493.jpg');
+            background-size: cover;
+            background-position: center center;
+            background-attachment: fixed;
+            font-family: 'Arial', sans-serif;
+            color: white;  /* Set text color to white to make it readable against dark background */
+        }
+
+        /* Container styling */
+        .container {
+            background-color: rgba(0, 0, 0, 0.7); /* Dark overlay for better readability */
+            padding: 40px;
+            border-radius: 10px;
+            max-width: 800px;  /* Adjust container size */
+            margin-top: 50px;  /* Position the container slightly lower on the page */
+        }
+
+        h2 {
+            font-size: 2.5rem;
+            text-align: center;
+            font-weight: bold;
+            color: white;
+        }
+
+        .table th, .table td {
+            color: white;  /* White text for table */
+        }
+
+        .btn {
+            margin-top: 20px;
+        }
+
+        h4 {
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2 class="my-4">Generated Bill</h2>
+
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Customer Name</th>
+                    <th>Coffee</th>
+                    <th>Quantity</th>
+                    <th>Total</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for order in orders %}
+                    <tr>
+                        <td>{% if order.customer_name %}{{ order.customer_name }}{% else %}Unknown{% endif %}</td>
+                        <td>{{ order.coffee.name }}</td>
+                        <td>{{ order.quantity }}</td>
+                        <td>${{ order.total_price }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <h4 class="my-4">Total: ${{ total }}</h4>
+    </div>
+</body>
+</html>
